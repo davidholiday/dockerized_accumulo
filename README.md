@@ -1,4 +1,4 @@
-# dockerized accumulo in three acts
+# dockerized accumulo in three containers
 
 
 ## what is? 
@@ -77,7 +77,7 @@ From the ../dockerized_accumulo/compose folder, type:
     docker-compose stop
 
 ## how to make it go again
-From the ../dockerized_accumulo/compose folder, type:i
+From the ../dockerized_accumulo/compose folder, type:
 
     docker-compose up -d
 
