@@ -63,5 +63,5 @@ EXPOSE 50095
 
 # swap these lines only after you've initialized accumulo manually! see README.md for deets
 #
-ENTRYPOINT sudo /opt/accumulo-1.7.0/bin/start-all.sh && while true; do sleep 1000; done
-#ENTRYPOINT while true; do sleep 1000; done
+#ENTRYPOINT sudo /opt/accumulo-1.7.0/bin/start-all.sh && while true; do sleep 1000; done
+ENTRYPOINT while true; do sleep 1000; done
