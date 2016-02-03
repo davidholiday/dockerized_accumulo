@@ -72,10 +72,12 @@ and you're done!
 
 
 ## how to make it stop
-From the ../dockerized_accumulo/compose folder, type: 
+From the ../dockerized_accumulo/compose folder, type:
+
     docker-compose stop
 
 ## how to make it go again
-From the ../dockerized_accumulo/compose folder, type:
+From the ../dockerized_accumulo/compose folder, type:i
+
     docker-compose up -d
 
