@@ -1,6 +1,4 @@
 # dockerized accumulo in three acts
-
-### [accumulo] [zookeeper] [hadoop]
 ---
 
 ## what is? 
