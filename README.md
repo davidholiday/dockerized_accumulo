@@ -77,5 +77,5 @@ From the ../dockerized_accumulo/compose folder, type:
 
 ## how to make it go again
 From the ../dockerized_accumulo/compose folder, type:
-	docker-compose up -d
+    docker-compose up -d
 
