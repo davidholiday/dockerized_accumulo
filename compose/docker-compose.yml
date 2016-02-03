@@ -1,0 +1,37 @@
+# handles provisioning of three-container accumulo stack.
+# [hadoop] [zookeeper] [accumulo]
+# maintainer david holiday <dholiday@moesol.com>
+#
+
+hadoop: 
+    build: ../hadoop/
+    container_name: hadoop
+    ports:
+        - "8088"
+        - "9000"
+        - "50070"
+        - "50075"
+        - "50090"
+
+
+zookeeper: 
+    build: ../zookeeper/
+    container_name: zookeeper
+    ports:
+        - "2181"
+        - "2888"
+        - "3888"
+
+
+accumulo:
+    build: ../accumulo/
+    container_name: accumulo
+    links:
+        - hadoop
+        - zookeeper
+    volumes_from:
+        - hadoop
+        - zookeeper
+    ports:
+        - "9995"
+        - "50095"
