@@ -3,7 +3,7 @@
 
 ## what is? 
 
-[Docker](http://www.docker.com/) is a technology that allows you to package an application with all of its dependencies into a standardized unit for software development. [Accumulo](http://accumulo.apache.org/) is a a scalable, secure noSQL database. What's here are the files needed to provision an accumulo stack consisting of three docker containers: one for hadoop (used as the file system back-ending accumulo), [zookeeper](http://zookeeper.apache.org/) (used by accumulo to coordinate the accumulo cluster), and accumulo itself. All three are provisioned to behave as single-node clusters, but, can be configured to include additional containerized nodes.
+[Docker](http://www.docker.com/) is a technology that allows you to package an application with all of its dependencies into a standardized unit for software development. [Accumulo](http://accumulo.apache.org/) is a a scalable, secure NoSQL database. What's here are the files needed to provision an accumulo stack consisting of three docker containers: one for hadoop (used as the file system back-ending accumulo), [zookeeper](http://zookeeper.apache.org/) (used by accumulo to coordinate the accumulo cluster), and accumulo itself. All three are provisioned to behave as single-node clusters, but, can be configured to include additional containerized nodes.
 
 ## how to set up?
 
