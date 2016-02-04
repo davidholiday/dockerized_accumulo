@@ -55,11 +55,14 @@ RUN sudo sed -i 's|# export ACCUMULO_MONITOR_BIND_ALL=|export ACCUMULO_MONITOR_B
 
 RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.0/conf/monitor
 
+RUN sudo sed -i 's|$MONITOR monitor|$HOSTNAME monitor|' /opt/accumulo-1.7.0/bin/start-all.sh
+
 
 # expose webservice port
 #
 EXPOSE 9995
 EXPOSE 50095
+
 
 # swap these lines only after you've initialized accumulo manually! see README.md for deets
 #
