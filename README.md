@@ -76,8 +76,15 @@ From the ../dockerized_accumulo/compose folder, type:
 
     docker-compose stop
 
+
 ## how to make it go again
 From the ../dockerized_accumulo/compose folder, type:
 
     docker-compose up -d
+
+
+## troubleshooting
+If you encounter an error stating something like *Failed to fetch http://archive.ubuntu.com/ubuntu/dists/trusty/Release.gpg  Could not resolve 'archive.ubuntu.com'*, follow the instructions [here](https://docs.docker.com/engine/installation/linux/ubuntulinux/#configure-a-dns-server-for-use-by-docker:7064cc4a474d59e7463e9c65d7d35de5) to configure docker to point to google's DNS server. 
+
+
 
