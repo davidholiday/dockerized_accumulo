@@ -47,17 +47,27 @@ type:
     
 which will stop and remove the accumulo container but not the underlying image. Now edit the accumulo docker file at ../dockerized_accumulo/accumulo/Dockerfile. Change the last two lines from this:
 
-    #ENTRYPOINT sudo /opt/accumulo-1.7.0/bin/start-all.sh && while true; do sleep 1000; done
     ENTRYPOINT while true; do sleep 1000; done
+
+    #ENTRYPOINT  dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo service ssh start && \
+    #                dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo /opt/accumulo-1.7.0/bin/start-all.sh && \
+    #                dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 while true; do sleep 1000; done
+
 
 
 to this:
 
 
-    ENTRYPOINT sudo /opt/accumulo-1.7.0/bin/start-all.sh && while true; do sleep 1000; done
     #ENTRYPOINT while true; do sleep 1000; done
 
-save and close the file. 
+    ENTRYPOINT  dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo service ssh start && \
+                    dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo /opt/accumulo-1.7.0/bin/start-all.sh && \
+                    dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 while true; do sleep 1000; done
+
+
+save and close the file. From here you need to incorporate the changes you made into the image:
+
+    docker build -t compose_accumulo [path to accumulo Dockerfile]
 
 
 
