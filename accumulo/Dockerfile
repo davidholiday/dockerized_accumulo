@@ -36,25 +36,28 @@ ENV ZOOKEEPER_HOME /opt/zookeeper
 # install accumulo
 #
 WORKDIR /opt
-RUN sudo wget http://www.motorlogy.com/apache/accumulo/1.7.0/accumulo-1.7.0-bin.tar.gz
+RUN sudo wget http://mirror.metrocast.net/apache/accumulo/1.7.1/accumulo-1.7.1-bin.tar.gz
 RUN sudo wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz
 RUN sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-v0.2.0.tar.gz
-RUN sudo tar -xvf accumulo-1.7.0-bin.tar.gz
+RUN sudo tar -xvf accumulo-1.7.1-bin.tar.gz
 
-WORKDIR /opt/accumulo-1.7.0/bin
+WORKDIR /opt/accumulo-1.7.1/bin
 RUN sudo ./bootstrap_config.sh -s 2GB -j -v 2
 
 
 # update accumulo config and shell scripts
 #
-RUN sudo sed -i 's|localhost:2181|zookeeper:2181|' /opt/accumulo-1.7.0/conf/accumulo-site.xml
-RUN sudo sed -i 's|<value></value>|<value>hdfs://hadoop:9000/accumulo</value>|' /opt/accumulo-1.7.0/conf/accumulo-site.xml
-RUN sudo sed -i 's|HADOOP_PREFIX=/path/to/hadoop|HADOOP_PREFIX=/opt/hadoop-2.6.3|' /opt/accumulo-1.7.0/conf/accumulo-env.sh
-RUN sudo sed -i 's|JAVA_HOME=/path/to/java|JAVA_HOME=/usr/lib/jvm/java-8-oracle|' /opt/accumulo-1.7.0/conf/accumulo-env.sh
-RUN sudo sed -i 's|ZOOKEEPER_HOME=/path/to/zookeeper|ZOOKEEPER_HOME=/opt/zookeeper|' /opt/accumulo-1.7.0/conf/accumulo-env.sh
-RUN sudo sed -i 's|# export ACCUMULO_MONITOR_BIND_ALL=|export ACCUMULO_MONITOR_BIND_ALL=|' /opt/accumulo-1.7.0/conf/accumulo-env.sh
-RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.0/conf/monitor
-RUN sudo sed -i 's|$MONITOR monitor|$HOSTNAME monitor|' /opt/accumulo-1.7.0/bin/start-all.sh
+RUN sudo sed -i 's|localhost:2181|zookeeper:2181|' /opt/accumulo-1.7.1/conf/accumulo-site.xml
+RUN sudo sed -i 's|<value></value>|<value>hdfs://hadoop:9000/accumulo</value>|' /opt/accumulo-1.7.1/conf/accumulo-site.xml
+
+RUN sudo sed -i 's|HADOOP_PREFIX=/path/to/hadoop|HADOOP_PREFIX=/opt/hadoop-2.6.3|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
+RUN sudo sed -i 's|JAVA_HOME=/path/to/java|JAVA_HOME=/usr/lib/jvm/java-8-oracle|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
+RUN sudo sed -i 's|ZOOKEEPER_HOME=/path/to/zookeeper|ZOOKEEPER_HOME=/opt/zookeeper|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
+RUN sudo sed -i 's|# export ACCUMULO_MONITOR_BIND_ALL=|export ACCUMULO_MONITOR_BIND_ALL=|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
+
+RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.1/conf/monitor
+
+RUN sudo sed -i 's|$MONITOR monitor|$HOSTNAME monitor|' /opt/accumulo-1.7.1/bin/start-all.sh
 
 
 # expose webservice port
@@ -68,6 +71,5 @@ EXPOSE 50095
 ENTRYPOINT while true; do sleep 1000; done
 
 #ENTRYPOINT  dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo service ssh start && \
-#                dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo /opt/accumulo-1.7.0/bin/start-all.sh && \
-#                dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 while true; do sleep 1000; done 
-
+#            dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 sudo /opt/accumulo-1.7.0/bin/start-all.sh && \
+#            dockerize -wait tcp://zookeeper:2181 -wait tcp://hadoop:9000 while true; do sleep 1000; done 
