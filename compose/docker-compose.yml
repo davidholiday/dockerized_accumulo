@@ -33,5 +33,6 @@ accumulo:
         - hadoop
         - zookeeper
     ports:
+        - "9997"
         - "9995"
         - "50095"

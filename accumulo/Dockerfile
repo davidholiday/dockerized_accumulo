@@ -55,6 +55,8 @@ RUN sudo sed -i 's|JAVA_HOME=/path/to/java|JAVA_HOME=/usr/lib/jvm/java-8-oracle|
 RUN sudo sed -i 's|ZOOKEEPER_HOME=/path/to/zookeeper|ZOOKEEPER_HOME=/opt/zookeeper|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
 RUN sudo sed -i 's|# export ACCUMULO_MONITOR_BIND_ALL=|export ACCUMULO_MONITOR_BIND_ALL=|' /opt/accumulo-1.7.1/conf/accumulo-env.sh
 
+RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.1/conf/masters
+RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.1/conf/slaves
 RUN sudo sed -i 's|localhost|0.0.0.0|' /opt/accumulo-1.7.1/conf/monitor
 
 RUN sudo sed -i 's|$MONITOR monitor|$HOSTNAME monitor|' /opt/accumulo-1.7.1/bin/start-all.sh
@@ -64,6 +66,7 @@ RUN sudo sed -i 's|$MONITOR monitor|$HOSTNAME monitor|' /opt/accumulo-1.7.1/bin/
 #
 EXPOSE 9995
 EXPOSE 50095
+EXPOSE 9997
 
 
 # swap these lines only after you've initialized accumulo manually! see README.md for deets
