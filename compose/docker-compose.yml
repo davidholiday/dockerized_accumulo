@@ -29,6 +29,7 @@ accumulo:
     links:
         - hadoop
         - zookeeper
+        - tserver1
     volumes_from:
         - hadoop
         - zookeeper
@@ -36,3 +37,30 @@ accumulo:
         - "9997"
         - "9995"
         - "50095"
+
+
+tserver1:
+    build: ../accumulo/
+    container_name: tserver1
+    links:
+        - hadoop
+        - zookeeper
+    volumes_from:
+        - hadoop
+        - zookeeper
+    ports:
+        - "9997"
+        - "9995"
+        - "50095"
+
+  
+
+
+
+
+
+
+
+
+
+
